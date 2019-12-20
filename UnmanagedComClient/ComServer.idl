@@ -1,0 +1,30 @@
+import "oaidl.idl";
+
+[
+	odl,
+	//Notice that this uuid must match the Guid of the Interface
+	uuid("6F6B348B-CA71-4CF5-8F51-2CD2928273CB"),
+	oleautomation,
+	helpstring("Interface for the string tests")
+]
+interface IStringTests : IUnknown
+{
+	[id(1), helpstring("Prints passed in string")] HRESULT PassInBstr([in]BSTR bStr);
+	[id(2), helpstring("Gets string from server")] HRESULT GetBstrFromComServer([out, retval]BSTR* returnValue);
+	[id(3), helpstring("Reverses and returns passed in string")] HRESULT ReverseBstr([in]BSTR bStr, [out, retval]BSTR* returnValue);
+};
+
+[
+	//This uuid is specific to the library it doesn't come from the com server
+	uuid("10D38AD3-E506-41FF-8EEC-F242BB07F42E")
+]
+library MathEngineLib
+{
+	[
+		uuid("AC65770F-2F38-4F3A-ABD4-697E53EB8482")
+	]
+	coclass StringTests
+	{
+		[default] interface IStringTests;
+	};
+};

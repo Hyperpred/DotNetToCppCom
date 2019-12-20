@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<Platforms>AnyCPU;x86;x64</Platforms>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<EnableComHosting>True</EnableComHosting>
+		<EnableRegFreeCom>True</EnableRegFreeCom>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+		<PlatformTarget>x86</PlatformTarget>
+		<OutputPath>..\$(Configuration)</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+		<PlatformTarget>x64</PlatformTarget>
+		<OutputPath>..\$(Platform)\$(Configuration)</OutputPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\DotNetStandardNonComVisible\DotNetStandardNonComVisible.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="GeneralTests\" />
+	</ItemGroup>
+
+</Project>
