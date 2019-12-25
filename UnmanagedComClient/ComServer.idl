@@ -1,5 +1,8 @@
 import "oaidl.idl";
 
+//Needed to use HSTRING in idl file
+import "hstring.idl";
+
 [
 	odl,
 	//Notice that this uuid must match the Guid of the Interface
@@ -9,9 +12,25 @@ import "oaidl.idl";
 ]
 interface IStringTests : IUnknown
 {
-	[id(1), helpstring("Prints passed in string")] HRESULT PassInBstr([in]BSTR bStr);
-	[id(2), helpstring("Gets string from server")] HRESULT GetBstrFromComServer([out, retval]BSTR* returnValue);
-	[id(3), helpstring("Reverses and returns passed in string")] HRESULT ReverseBstr([in]BSTR bStr, [out, retval]BSTR* returnValue);
+	[id(1), helpstring("Gets string from server")] HRESULT GetBstrFromComServer([out, retval]BSTR* returnValue);
+	[id(2)] HRESULT GetLPStrFromComServer([out, retval]LPSTR* returnvalue);
+	[id(3)] HRESULT GetLPWStrFromComServer([out, retval]LPWSTR* returnvalue);
+	[id(4)] HRESULT GetLPUTF8StrFromComServer([out, retval]LPSTR* returnvalue);
+
+	[id(5), helpstring("Prints passed in string")] HRESULT PassInBstr([in]BSTR bStr);
+	[id(6)] HRESULT PassInLPStr([in]LPSTR lpstr);
+	[id(7)] HRESULT PassInLPWStr([in]LPWSTR lpwstr);
+	[id(8)] HRESULT PassInLPUTF8Str([in]const LPSTR* lputf8str);
+
+	[id(9), helpstring("Modifies a string passed in by ref")] HRESULT PassInByRefBstr([in, out]BSTR* bStr);
+	[id(10)] HRESULT PassInByRefLPStr([in, out]LPSTR* lpstr);
+	[id(11)] HRESULT PassInByRefLPWStr([in, out]LPWSTR* lpwstr);
+	[id(12)] HRESULT PassInByRefLPUTF8Str([in, out]LPSTR* lputf8str);
+
+	[id(13), helpstring("Reverses and returns passed in string")] HRESULT ReverseBstr([in]BSTR bStr, [out, retval]BSTR* returnValue);
+	[id(14)] HRESULT ReverseLPStr([in]LPSTR lpstr, [out, retval]LPSTR* returnvalue);
+	[id(15)] HRESULT ReverseLPWStr([in]LPWSTR lpwstr, [out, retval]LPWSTR* returnvalue);
+	[id(16)] HRESULT ReverseLPUTF8Str([in]LPSTR lpstr, [out, retval]LPSTR* returnvalue);
 };
 
 [

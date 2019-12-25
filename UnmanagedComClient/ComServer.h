@@ -66,6 +66,7 @@ typedef struct StringTests StringTests;
 
 /* header files for imported files */
 #include "oaidl.h"
+#include "hstring.h"
 
 #ifdef __cplusplus
 extern "C"{
@@ -87,15 +88,57 @@ EXTERN_C const IID IID_IStringTests;
     IStringTests : public IUnknown
     {
     public:
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE GetBstrFromComServer( 
+            /* [retval][out] */ BSTR *returnValue) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE GetLPStrFromComServer( 
+            /* [retval][out] */ LPSTR *returnvalue) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE GetLPWStrFromComServer( 
+            /* [retval][out] */ LPWSTR *returnvalue) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE GetLPUTF8StrFromComServer( 
+            /* [retval][out] */ LPSTR *returnvalue) = 0;
+        
         virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE PassInBstr( 
             /* [in] */ BSTR bStr) = 0;
         
-        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE GetBstrFromComServer( 
-            /* [retval][out] */ BSTR *returnValue) = 0;
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE PassInLPStr( 
+            /* [in] */ LPSTR lpstr) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE PassInLPWStr( 
+            /* [in] */ LPWSTR lpwstr) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE PassInLPUTF8Str( 
+            /* [in] */ const CHAR *lputf8str) = 0;
+        
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE PassInByRefBstr( 
+            /* [out][in] */ BSTR *bStr) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE PassInByRefLPStr( 
+            /* [out][in] */ LPSTR *lpstr) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE PassInByRefLPWStr( 
+            /* [out][in] */ LPWSTR *lpwstr) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE PassInByRefLPUTF8Str( 
+            /* [out][in] */ LPSTR *lputf8str) = 0;
         
         virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE ReverseBstr( 
             /* [in] */ BSTR bStr,
             /* [retval][out] */ BSTR *returnValue) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE ReverseLPStr( 
+            /* [in] */ LPSTR lpstr,
+            /* [retval][out] */ LPSTR *returnvalue) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE ReverseLPWStr( 
+            /* [in] */ LPWSTR lpwstr,
+            /* [retval][out] */ LPWSTR *returnvalue) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE ReverseLPUTF8Str( 
+            /* [in] */ LPSTR lpstr,
+            /* [retval][out] */ LPSTR *returnvalue) = 0;
         
     };
     
@@ -118,18 +161,73 @@ EXTERN_C const IID IID_IStringTests;
         ULONG ( STDMETHODCALLTYPE *Release )( 
             IStringTests * This);
         
+        /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *GetBstrFromComServer )( 
+            IStringTests * This,
+            /* [retval][out] */ BSTR *returnValue);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *GetLPStrFromComServer )( 
+            IStringTests * This,
+            /* [retval][out] */ LPSTR *returnvalue);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *GetLPWStrFromComServer )( 
+            IStringTests * This,
+            /* [retval][out] */ LPWSTR *returnvalue);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *GetLPUTF8StrFromComServer )( 
+            IStringTests * This,
+            /* [retval][out] */ CHAR *returnvalue);
+        
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *PassInBstr )( 
             IStringTests * This,
             /* [in] */ BSTR bStr);
         
-        /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *GetBstrFromComServer )( 
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *PassInLPStr )( 
             IStringTests * This,
-            /* [retval][out] */ BSTR *returnValue);
+            /* [in] */ LPSTR lpstr);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *PassInLPWStr )( 
+            IStringTests * This,
+            /* [in] */ LPWSTR lpwstr);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *PassInLPUTF8Str )( 
+            IStringTests * This,
+            /* [in] */ const CHAR *lputf8str);
+        
+        /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *PassInByRefBstr )( 
+            IStringTests * This,
+            /* [out][in] */ BSTR *bStr);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *PassInByRefLPStr )( 
+            IStringTests * This,
+            /* [out][in] */ LPSTR *lpstr);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *PassInByRefLPWStr )( 
+            IStringTests * This,
+            /* [out][in] */ LPWSTR *lpwstr);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *PassInByRefLPUTF8Str )( 
+            IStringTests * This,
+            /* [out][in] */ CHAR *lputf8str);
         
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *ReverseBstr )( 
             IStringTests * This,
             /* [in] */ BSTR bStr,
             /* [retval][out] */ BSTR *returnValue);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *ReverseLPStr )( 
+            IStringTests * This,
+            /* [in] */ LPSTR lpstr,
+            /* [retval][out] */ LPSTR *returnvalue);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *ReverseLPWStr )( 
+            IStringTests * This,
+            /* [in] */ LPWSTR lpwstr,
+            /* [retval][out] */ LPWSTR *returnvalue);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *ReverseLPUTF8Str )( 
+            IStringTests * This,
+            /* [in] */ const CHAR *lpstr,
+            /* [retval][out] */ CHAR *returnvalue);
         
         END_INTERFACE
     } IStringTestsVtbl;
@@ -154,14 +252,53 @@ EXTERN_C const IID IID_IStringTests;
     ( (This)->lpVtbl -> Release(This) ) 
 
 
-#define IStringTests_PassInBstr(This,bStr)	\
-    ( (This)->lpVtbl -> PassInBstr(This,bStr) ) 
-
 #define IStringTests_GetBstrFromComServer(This,returnValue)	\
     ( (This)->lpVtbl -> GetBstrFromComServer(This,returnValue) ) 
 
+#define IStringTests_GetLPStrFromComServer(This,returnvalue)	\
+    ( (This)->lpVtbl -> GetLPStrFromComServer(This,returnvalue) ) 
+
+#define IStringTests_GetLPWStrFromComServer(This,returnvalue)	\
+    ( (This)->lpVtbl -> GetLPWStrFromComServer(This,returnvalue) ) 
+
+#define IStringTests_GetLPUTF8StrFromComServer(This,returnvalue)	\
+    ( (This)->lpVtbl -> GetLPUTF8StrFromComServer(This,returnvalue) ) 
+
+#define IStringTests_PassInBstr(This,bStr)	\
+    ( (This)->lpVtbl -> PassInBstr(This,bStr) ) 
+
+#define IStringTests_PassInLPStr(This,lpstr)	\
+    ( (This)->lpVtbl -> PassInLPStr(This,lpstr) ) 
+
+#define IStringTests_PassInLPWStr(This,lpwstr)	\
+    ( (This)->lpVtbl -> PassInLPWStr(This,lpwstr) ) 
+
+#define IStringTests_PassInLPUTF8Str(This,lputf8str)	\
+    ( (This)->lpVtbl -> PassInLPUTF8Str(This,lputf8str) ) 
+
+#define IStringTests_PassInByRefBstr(This,bStr)	\
+    ( (This)->lpVtbl -> PassInByRefBstr(This,bStr) ) 
+
+#define IStringTests_PassInByRefLPStr(This,lpstr)	\
+    ( (This)->lpVtbl -> PassInByRefLPStr(This,lpstr) ) 
+
+#define IStringTests_PassInByRefLPWStr(This,lpwstr)	\
+    ( (This)->lpVtbl -> PassInByRefLPWStr(This,lpwstr) ) 
+
+#define IStringTests_PassInByRefLPUTF8Str(This,lputf8str)	\
+    ( (This)->lpVtbl -> PassInByRefLPUTF8Str(This,lputf8str) ) 
+
 #define IStringTests_ReverseBstr(This,bStr,returnValue)	\
     ( (This)->lpVtbl -> ReverseBstr(This,bStr,returnValue) ) 
+
+#define IStringTests_ReverseLPStr(This,lpstr,returnvalue)	\
+    ( (This)->lpVtbl -> ReverseLPStr(This,lpstr,returnvalue) ) 
+
+#define IStringTests_ReverseLPWStr(This,lpwstr,returnvalue)	\
+    ( (This)->lpVtbl -> ReverseLPWStr(This,lpwstr,returnvalue) ) 
+
+#define IStringTests_ReverseLPUTF8Str(This,lpstr,returnvalue)	\
+    ( (This)->lpVtbl -> ReverseLPUTF8Str(This,lpstr,returnvalue) ) 
 
 #endif /* COBJMACROS */
 
